@@ -4,7 +4,7 @@
 			"outDir": "bin",
 			"target": "ES2022",
 			"module": "Node16",
-			"moduleResolution": "node",
+			"moduleResolution": "Node16",
 			"sourceMap": true,
 			"experimentalDecorators": true,
 			"pretty": true,
