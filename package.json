@@ -1,0 +1,14 @@
+{
+    "name": "eligibility-energy",
+    "version": "1.0.0",
+    "description": "Eligibility energy validation service",
+    "dependencies": {
+        "@pulumi/pulumi": "^3.0.0",
+        "@pulumi/aws": "^6.0.0",
+        "@pulumi/awsx": "^2.0.2"
+    },
+    "devDependencies": {
+        "typescript": "^4.0.0",
+        "@types/node": "^18"
+    }
+}

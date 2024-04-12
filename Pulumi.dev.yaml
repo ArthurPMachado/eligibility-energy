@@ -1,0 +1,5 @@
+config:
+  aws:region: us-east-2
+  eligibility-energy:containerPort: "80"
+  eligibility-energy:cpu: "256"
+  eligibility-energy:memory: "128"
