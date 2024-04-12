@@ -13,6 +13,10 @@
 			"forceConsistentCasingInFileNames": true,
 			"skipLibCheck": true,
 			"esModuleInterop": true,
+			"allowSyntheticDefaultImports": true,
+			"strictNullChecks": true,
+			"noImplicitAny": false,
+			"strictBindCallApply": false,
 			"baseUrl": "./",
 			"paths": {
 				"@/*": ["./src/*"]
