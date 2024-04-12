@@ -2,6 +2,9 @@
     "name": "eligibility-energy",
     "version": "1.0.0",
     "description": "Eligibility energy validation service",
+    "scripts": {
+        "dev": "tsx watch src/server.ts"
+    },
     "dependencies": {
         "@pulumi/aws": "^6.0.0",
         "@pulumi/awsx": "^2.0.2",
