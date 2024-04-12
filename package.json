@@ -5,7 +5,8 @@
     "dependencies": {
         "@pulumi/aws": "^6.0.0",
         "@pulumi/awsx": "^2.0.2",
-        "@pulumi/pulumi": "^3.0.0"
+        "@pulumi/pulumi": "^3.0.0",
+        "fastify": "^4.26.2"
     },
     "devDependencies": {
         "@rocketseat/eslint-config": "^2.2.2",
