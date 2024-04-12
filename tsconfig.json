@@ -2,15 +2,21 @@
 		"compilerOptions": {
 			"strict": true,
 			"outDir": "bin",
-			"target": "es2016",
-			"module": "commonjs",
+			"target": "ES2022",
+			"module": "Node16",
 			"moduleResolution": "node",
 			"sourceMap": true,
 			"experimentalDecorators": true,
 			"pretty": true,
 			"noFallthroughCasesInSwitch": true,
 			"noImplicitReturns": true,
-			"forceConsistentCasingInFileNames": true
+			"forceConsistentCasingInFileNames": true,
+			"skipLibCheck": true,
+			"esModuleInterop": true,
+			"baseUrl": "./",
+			"paths": {
+				"@/*": ["./src/*"]
+			}
 		},
 		"files": [
 			"index.ts"
