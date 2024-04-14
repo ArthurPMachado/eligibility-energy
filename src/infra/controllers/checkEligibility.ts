@@ -7,19 +7,19 @@ export async function checkEligibility(
   reply: FastifyReply,
 ) {
   const {
-    tipoDeConexao,
-    classeDeConsumo,
-    modalidadeTarifaria,
-    historicoDeConsumo,
+    tipoDeConexao: connectionType,
+    classeDeConsumo: consumptionClass,
+    modalidadeTarifaria: taxModality,
+    historicoDeConsumo: consumptionHistory,
   } = checkEligibilitySchema.parse(request.body)
 
   const checkEligibilityUseCase = new CheckEligibilityUseCase()
 
   const response = await checkEligibilityUseCase.execute({
-    tipoDeConexao,
-    classeDeConsumo,
-    modalidadeTarifaria,
-    historicoDeConsumo,
+    connectionType,
+    consumptionClass,
+    taxModality,
+    consumptionHistory,
   })
 
   return reply.status(200).send(response)

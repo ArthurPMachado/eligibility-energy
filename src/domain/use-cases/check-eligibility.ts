@@ -12,29 +12,29 @@ import { getCO2Economy } from '@/utils/getCO2Economy'
 
 export class CheckEligibilityUseCase {
   async execute({
-    tipoDeConexao,
-    classeDeConsumo,
-    modalidadeTarifaria,
-    historicoDeConsumo,
+    connectionType,
+    consumptionClass,
+    taxModality,
+    consumptionHistory,
   }: ICheckEligibilityUseCaseRequest): Promise<ICheckEligibilityUseCaseResponse> {
     const ineligibilityReasons: string[] = []
 
-    const isIneligibleConsumption = !eligibleConsumptions[classeDeConsumo]
+    const isIneligibleConsumption = !eligibleConsumptions[consumptionClass]
 
     if (isIneligibleConsumption) {
       ineligibilityReasons.push(IneligibilityReasons.INVALID_CONSUMPTION_CLASS)
     }
 
-    const isIneligibleTaxModality = !eligibleTaxModalities[modalidadeTarifaria]
+    const isIneligibleTaxModality = !eligibleTaxModalities[taxModality]
 
     if (isIneligibleTaxModality) {
       ineligibilityReasons.push(IneligibilityReasons.INVALID_TAX_MODALITY)
     }
 
-    const powerConsumption = getTotalPowerConsumption(historicoDeConsumo)
-    const averagePowerConsumption = powerConsumption / historicoDeConsumo.length
+    const powerConsumption = getTotalPowerConsumption(consumptionHistory)
+    const averagePowerConsumption = powerConsumption / consumptionHistory.length
 
-    if (averagePowerConsumption < energyConnectionTypes[tipoDeConexao]) {
+    if (averagePowerConsumption < energyConnectionTypes[connectionType]) {
       ineligibilityReasons.push(
         IneligibilityReasons.LOW_POWER_PHASE_CONSUMPTION,
       )

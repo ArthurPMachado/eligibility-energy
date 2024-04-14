@@ -1,14 +1,14 @@
 import { CheckEligibilityUseCase } from '@/domain/use-cases/check-eligibility'
 import { IneligibilityReasons } from '@/domain/use-cases/enums/ineligibilityReasons'
 import { ICheckEligibilityUseCaseRequest } from '@/domain/use-cases/interfaces/ICheckEligibilityUseCase'
-import { historicConsumption } from 'test/data/historicConsumption'
+import { consumptionHistory } from 'test/data/consumptionHistory'
 
 const checkEligibilityBody = {
-  numeroDoDocumento: '12345678901',
-  tipoDeConexao: 'monofasico',
-  classeDeConsumo: 'industrial',
-  modalidadeTarifaria: 'branca',
-  historicoDeConsumo: historicConsumption,
+  documentNumber: '12345678901',
+  connectionType: 'monofasico',
+  consumptionClass: 'industrial',
+  taxModality: 'branca',
+  consumptionHistory,
 } as ICheckEligibilityUseCaseRequest
 
 describe('Check Eligibility Use Case', () => {
@@ -27,7 +27,7 @@ describe('Check Eligibility Use Case', () => {
   it('should be able to make ineligible if the consumption class is not eligible', async () => {
     const checkEligibilityBodyIneligibleConsumption = {
       ...checkEligibilityBody,
-      classeDeConsumo: 'rural',
+      consumptionClass: 'rural',
     }
 
     const checkEligibilityUseCase = new CheckEligibilityUseCase()
@@ -46,7 +46,7 @@ describe('Check Eligibility Use Case', () => {
   it('should be able to make ineligible if the tax modality is not eligible', async () => {
     const checkEligibilityBodyIneligibleTaxModality = {
       ...checkEligibilityBody,
-      modalidadeTarifaria: 'azul',
+      taxModality: 'azul',
     }
 
     const checkEligibilityUseCase = new CheckEligibilityUseCase()
@@ -65,7 +65,7 @@ describe('Check Eligibility Use Case', () => {
   it('should be able to make ineligible if the consumption is lower than the minimum allowed', async () => {
     const checkEligibilityBodyIneligibleLowConsumption = {
       ...checkEligibilityBody,
-      historicoDeConsumo: [100, 300, 500, 100, 100, 50],
+      consumptionHistory: [100, 300, 500, 100, 100, 50],
     }
 
     const checkEligibilityUseCase = new CheckEligibilityUseCase()
@@ -86,10 +86,10 @@ describe('Check Eligibility Use Case', () => {
   it('should be able to make ineligible for all rules', async () => {
     const checkEligibilityBodyIneligibleAllRules = {
       ...checkEligibilityBody,
-      classeDeConsumo: 'poderPublico',
-      modalidadeTarifaria: 'verde',
-      tipoDeConexao: 'trifasico',
-      historicoDeConsumo: [812, 300, 2467, 100, 100, 50],
+      consumptionClass: 'poderPublico',
+      taxModality: 'verde',
+      connectionType: 'trifasico',
+      consumptionHistory: [812, 300, 2467, 100, 100, 50],
     }
 
     const checkEligibilityUseCase = new CheckEligibilityUseCase()
