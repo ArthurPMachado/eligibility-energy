@@ -1,3 +1,3 @@
-export const naturalPersonDocument = /^(("\d{11}"))$/
+export const naturalPersonDocument = /^[0-9]{11}$/
 
-export const legalPersonDocument = /^(("\d{14}"))$/
+export const legalPersonDocument = /^[0-9]{14}$/

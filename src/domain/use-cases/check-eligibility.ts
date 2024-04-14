@@ -8,7 +8,7 @@ import { eligibleTaxModalities } from '@/core/constants/taxModality'
 import { left, right } from '@/core/either'
 import { getTotalPowerConsumption } from '@/utils/getTotalPowerConsumption'
 import { energyConnectionTypes } from '@/core/constants/energyConnection'
-import { getCO2Economy } from '@/utils/co2Economy'
+import { getCO2Economy } from '@/utils/getCO2Economy'
 
 export class CheckEligibilityUseCase {
   async execute({
