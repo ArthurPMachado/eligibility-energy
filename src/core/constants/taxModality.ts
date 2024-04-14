@@ -1,6 +1,6 @@
 export const taxModality = {
-  BLUE: 'azul',
-  WHITE: 'branca',
-  GREEN: 'verde',
-  CONVENTIONAL: 'convencional',
+  azul: 'azul',
+  branca: 'branca',
+  verde: 'verde',
+  convencional: 'convencional',
 }

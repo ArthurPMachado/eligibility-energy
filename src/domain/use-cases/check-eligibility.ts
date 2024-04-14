@@ -10,5 +10,7 @@ export class CheckEligibilityUseCase {
     classeDeConsumo,
     modailidadeTarifaria,
     historicoDeConsumo,
-  }: ICheckEligibilityUseCaseRequest): Promise<ICheckEligibilityUseCaseResponse> {}
+  }: ICheckEligibilityUseCaseRequest): Promise<ICheckEligibilityUseCaseResponse> {
+    const ineligibilityReasons = []
+  }
 }

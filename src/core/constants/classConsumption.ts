@@ -1,7 +1,7 @@
 export const classConsumption = {
-  RESIDENTIAL: 'residencial',
-  INDUSTRIAL: 'industrial',
-  COMMERCIAL: 'comercial',
+  residencial: 'residencial',
+  industrial: 'industrial',
+  comercial: 'comercial',
   RURAL: 'rural',
-  PUBLIC_POWER: 'poderPublico',
+  poderPublico: 'poderPublico',
 }
