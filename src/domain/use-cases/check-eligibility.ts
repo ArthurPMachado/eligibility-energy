@@ -14,7 +14,7 @@ export class CheckEligibilityUseCase {
   async execute({
     tipoDeConexao,
     classeDeConsumo,
-    modailidadeTarifaria,
+    modalidadeTarifaria,
     historicoDeConsumo,
   }: ICheckEligibilityUseCaseRequest): Promise<ICheckEligibilityUseCaseResponse> {
     const ineligibilityReasons: string[] = []
@@ -25,7 +25,7 @@ export class CheckEligibilityUseCase {
       ineligibilityReasons.push(IneligibilityReasons.INVALID_CONSUMPTION_CLASS)
     }
 
-    const isIneligibleTaxModality = !eligibleTaxModalities[modailidadeTarifaria]
+    const isIneligibleTaxModality = !eligibleTaxModalities[modalidadeTarifaria]
 
     if (isIneligibleTaxModality) {
       ineligibilityReasons.push(IneligibilityReasons.INVALID_TAX_MODALITY)

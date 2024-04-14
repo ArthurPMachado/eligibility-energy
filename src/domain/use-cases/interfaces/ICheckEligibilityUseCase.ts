@@ -5,7 +5,7 @@ export interface ICheckEligibilityUseCaseRequest {
   numeroDoDocumento: string
   tipoDeConexao: string
   classeDeConsumo: string
-  modailidadeTarifaria: string
+  modalidadeTarifaria: string
   historicoDeConsumo: number[]
 }
 
