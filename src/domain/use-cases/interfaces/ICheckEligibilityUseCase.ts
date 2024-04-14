@@ -2,7 +2,7 @@ import { Either } from '@/core/either'
 import { IElegibleResponse, IIneligibleResponse } from './IEligibilityResponse'
 
 export interface ICheckEligibilityUseCaseRequest {
-  numeroDoDocumento: string
+  numeroDoDocumento?: string
   tipoDeConexao: string
   classeDeConsumo: string
   modalidadeTarifaria: string
