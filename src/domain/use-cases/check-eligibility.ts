@@ -5,11 +5,13 @@ import {
 import { IneligibilityReasons } from './enums/ineligibilityReasons'
 import { eligibleConsumptions } from '@/core/constants/classConsumption'
 import { eligibleTaxModalities } from '@/core/constants/taxModality'
-import { left } from '@/core/either'
+import { left, right } from '@/core/either'
+import { getTotalPowerConsumption } from '@/utils/getTotalPowerConsumption'
+import { energyConnectionTypes } from '@/core/constants/energyConnection'
+import { getCO2Economy } from '@/utils/co2Economy'
 
 export class CheckEligibilityUseCase {
   async execute({
-    numeroDoDocumento,
     tipoDeConexao,
     classeDeConsumo,
     modailidadeTarifaria,
@@ -17,17 +19,26 @@ export class CheckEligibilityUseCase {
   }: ICheckEligibilityUseCaseRequest): Promise<ICheckEligibilityUseCaseResponse> {
     const ineligibilityReasons: string[] = []
 
-    if (!eligibleConsumptions[classeDeConsumo]) {
+    const isIneligibleConsumption = !eligibleConsumptions[classeDeConsumo]
+
+    if (isIneligibleConsumption) {
       ineligibilityReasons.push(IneligibilityReasons.INVALID_CONSUMPTION_CLASS)
     }
 
-    if (!eligibleTaxModalities[modailidadeTarifaria]) {
+    const isIneligibleTaxModality = !eligibleTaxModalities[modailidadeTarifaria]
+
+    if (isIneligibleTaxModality) {
       ineligibilityReasons.push(IneligibilityReasons.INVALID_TAX_MODALITY)
     }
 
-    // TODO: implement utils to calculate power consumption (reduce)
-    // TODO; check eligibility of power consumption based on energy type connection
-    // TODO: implement utils to calculateCO2 economy
+    const powerConsumption = getTotalPowerConsumption(historicoDeConsumo)
+    const averagePowerConsumption = powerConsumption / historicoDeConsumo.length
+
+    if (averagePowerConsumption < energyConnectionTypes[tipoDeConexao]) {
+      ineligibilityReasons.push(
+        IneligibilityReasons.LOW_POWER_PHASE_CONSUMPTION,
+      )
+    }
 
     if (ineligibilityReasons.length > 0) {
       const response = {
@@ -37,5 +48,14 @@ export class CheckEligibilityUseCase {
 
       return left(response)
     }
+
+    const co2Economy = getCO2Economy(powerConsumption)
+
+    const response = {
+      elegivel: true,
+      economiaAnualDeCO2: co2Economy,
+    }
+
+    return right(response)
   }
 }
