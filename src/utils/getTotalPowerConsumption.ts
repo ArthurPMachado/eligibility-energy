@@ -1,5 +1,7 @@
 export function getTotalPowerConsumption(historicoDeConsumo: number[]): number {
-  return historicoDeConsumo.reduce((total, currentValue) => {
+  const totalConsumption = historicoDeConsumo.reduce((total, currentValue) => {
     return total + currentValue
   }, 0)
+
+  return totalConsumption
 }
