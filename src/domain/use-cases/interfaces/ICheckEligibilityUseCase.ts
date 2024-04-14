@@ -1,5 +1,5 @@
-import { Either } from "@/core/either";
-import { IElegibleResponse, IIneligibleResponse } from "./IEligibilityResponse";
+import { Either } from '@/core/either'
+import { IElegibleResponse, IIneligibleResponse } from './IEligibilityResponse'
 
 export interface ICheckEligibilityUseCaseRequest {
   numeroDoDocumento: string

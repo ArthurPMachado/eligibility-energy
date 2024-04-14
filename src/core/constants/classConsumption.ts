@@ -3,5 +3,5 @@ export const classConsumption = {
   INDUSTRIAL: 'industrial',
   COMMERCIAL: 'comercial',
   RURAL: 'rural',
-  PUBLIC_POWER: 'poderPublico'
+  PUBLIC_POWER: 'poderPublico',
 }

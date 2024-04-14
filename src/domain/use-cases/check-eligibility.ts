@@ -1,8 +1,14 @@
-import { ICheckEligibilityUseCaseRequest } from "./interfaces/ICheckEligibilityUseCase";
+import {
+  ICheckEligibilityUseCaseRequest,
+  ICheckEligibilityUseCaseResponse,
+} from './interfaces/ICheckEligibilityUseCase'
 
 export class CheckEligibilityUseCase {
-  
-  async execute(body: ICheckEligibilityUseCaseRequest): Promise<void> {
-    
-  }
+  async execute({
+    numeroDoDocumento,
+    tipoDeConexao,
+    classeDeConsumo,
+    modailidadeTarifaria,
+    historicoDeConsumo,
+  }: ICheckEligibilityUseCaseRequest): Promise<ICheckEligibilityUseCaseResponse> {}
 }

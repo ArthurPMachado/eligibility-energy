@@ -1,4 +1,3 @@
-export const naturalPersonDocument = new RegExp(/^(("\d{11}"))$/)
+export const naturalPersonDocument = /^(("\d{11}"))$/
 
-export const legalPersonDocument = new RegExp(/^(("\d{14}"))$/)
-
+export const legalPersonDocument = /^(("\d{14}"))$/
