@@ -61,13 +61,9 @@ $ pnpm run test:e2e
 ```
 ⚠️ **NÃO ESQUEÇA DE CRIAR UM ARQUIVO .ENV, CASO CONTRÁRIO O PROJETO NÃO IRÁ FUNCIONAR**
 
-# Author
+# Autor
 
 👤 **Arthur Machado**
 
 - Github: [@Arthur Machado](https://github.com/ArthurPMachado)
 - LinkedIn: [@Arthur Machado](https://linkedin.com/in/arthurpmachado)
-
-## Show your support
-
-Give a ⭐️ if this project helped you!
