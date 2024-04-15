@@ -1,0 +1,56 @@
+{
+	"info": {
+		"_postman_id": "6abce123-a8da-4573-9281-35ece495b859",
+		"name": "Lemon Energia",
+		"description": "Collection para verificar a elegibilidade dos clientes que desejam fazer parte da Lemon. Para isso existe 2 endpoints disponíveis: um para avaliar se o serviço está de pé e outro que realmente faz a checagem da elegibilidade\n\nPara o dominio local, pode-se usar: [http://localhost:3333](http://localhost:3333)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10682366"
+	},
+	"item": [
+		{
+			"name": "Check Health",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/health",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"health"
+					]
+				},
+				"description": "Endpoint para avaliar se o serviço está rodando.\n\nResposta:\n\nSTATUS: 200\n\n``` json\n{\n    \"status\": \"ok\"\n}\n\n ```"
+			},
+			"response": []
+		},
+		{
+			"name": "Check Eligibility",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"numeroDoDocumento\": \"1234567890123554\",\r\n    \"tipoDeConexao\": \"bifasico\",\r\n    \"classeDeConsumo\": \"residencial\",\r\n    \"modalidadeTarifaria\": \"vermelho\",\r\n    \"historicoDeConsumo\": [1000, 475, 342]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/eligibility",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"eligibility"
+					]
+				},
+				"description": "Endpoint para checar a elegibilidade de um cliente de fazer parte da Lemon.\n\nVale atentar que os campos possuem um schema por possuirem valores específicos, sendo estes:\n\n``` json\n{\n  \"numeroDoDocumento\": string, // CPF ou CNPJ\n  \"tipoDeConexao\": \"monofasico\" | \"bifasico\" | \"trifasico\"\n  \"classeDeConsumo\": \"residencial\" | \"industrial\" | \"comercial\" | \"rural\" | \"poderPublico\",\n  \"modalidadeTarifaria\": \"azul\" | \"verde\" | \"branca\" | \"convencional\",\n  \"historicoDeConsumo\": array[number]\n}\n\n ```\n\nPara o historico de consumo, é necessário passar dos ultimos 3 meses até os ultimos 12, contando com o mês atual. Além disso, os valores dentro do array precisam ser positivos e abaixo de 10000\n\n**Resposta elegivel:**\n\n**Status: 200**\n\n``` json\n{\n    \"elegivel\": true,\n    \"economiaAnualDeCO2\": 152.63\n}\n\n ```\n\n**Resposta inelegivel:**\n\n**Status: 200**\n\n``` json\n{\n    \"elegivel\": false,\n    \"razoesDeInelegibilidade\": [\n        \"Classe de consumo não aceita\",\n        \"Modalidade tributária não aceita\",\n        \"Consumo muito baixo para o tipo de conexão\"\n    ]\n}\n\n ```\n\n**Resposta schema invalido:**\n\n**Status: 400**\n\n``` json\n{\n    \"message\": \"Validation error.\",\n    \"issues\": {\n        \"_errors\": [],\n        \"numeroDoDocumento\": {\n            \"_errors\": [\n                \"Invalid document, must be either CPF or CNPJ length\"\n            ]\n        },\n        \"modalidadeTarifaria\": {\n            \"_errors\": [\n                \"Invalid enum value. Expected 'azul' | 'branca' | 'verde' | 'convencional', received 'vermelho'\"\n            ]\n        }\n    }\n}\n\n ```"
+			},
+			"response": []
+		}
+	]
+}
