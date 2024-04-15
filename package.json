@@ -9,7 +9,8 @@
     "test:watch": "vitest",
     "test:cov": "vitest run --coverage",
     "test:e2e": "vitest run --config ./vitest.config.e2e.ts",
-    "test:e2e:watch": "vitest --config ./vitest.config.e2e.ts"
+    "test:e2e:watch": "vitest --config ./vitest.config.e2e.ts",
+    "test:e2e:cov": "vitest run --coverage --config ./vitest.config.e2e.ts"
   },
   "dependencies": {
     "@pulumi/aws": "^6.0.0",
