@@ -1,6 +1,6 @@
-name: eligibility-energy
+name: lemon-energy
 runtime: nodejs
-description: A TypeScript program to deploy a containerized service on AWS
+description: An eligibility validation service in a containerized service on AWS
 config:
   pulumi:tags:
     value:
