@@ -10,7 +10,7 @@ const [azul, ...outrasModalidades] = Object.keys(taxModalities)
 
 export const checkEligibilitySchema = z.object({
   numeroDoDocumento: z.string().refine((value) => isDocumentValid(value), {
-    message: 'Invalid document',
+    message: 'Invalid document, must be either CPF or CNPJ length',
   }),
   tipoDeConexao: z.enum([monofasico, ...outrasConexoes]),
   classeDeConsumo: z.enum([residencial, ...outrasClasses]),

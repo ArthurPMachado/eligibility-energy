@@ -22,5 +22,5 @@ export async function checkEligibility(
     consumptionHistory,
   })
 
-  return reply.status(200).send(response)
+  return reply.status(200).send(response.value)
 }
