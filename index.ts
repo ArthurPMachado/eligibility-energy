@@ -22,10 +22,10 @@ const ecrRepository = new awsx.ecr.Repository('docker-repo', {
   forceDelete: true,
 })
 
-// Build and publish our application's container image from ./app to the ECR repository
+// Build and publish our application's container image from ./ to the ECR repository
 const containerImage = new awsx.ecr.Image('docker-image', {
   repositoryUrl: ecrRepository.url,
-  context: './app',
+  context: './',
   platform: 'linux/amd64',
 })
 
